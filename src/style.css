@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('./images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+header {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  width: 20%;
+  margin-bottom: 15px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
