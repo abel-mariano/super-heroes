@@ -13,30 +13,38 @@
 
   <main class="main">
     <section class="container-section">
-      <div class="card-box">
-        <img src="./src/images/516.jpg" alt="card image">
+      <div class="card">
+        <div class="card__inner">
+          <div class="card__body card__body--front">
+            <img src="./src/images/516.jpg" alt="card image">
+            <!-- <h2 class="card__title">FRONT SIDE</h2> -->
+          </div>
+          
+          <div class="card__body card__body--back">
+            <!-- <h2 class="card__title">BACK SIDE</h2> -->
+            <h3>Super Hero Name</h3>
+
+            <ul class="powerstats">
+              <li class="skills">
+                <span class="skill-name">Intelligence:</span>
+                <span class="skill-name">100</span>
+              </li>
+              <li class="skills">
+                <span class="skill-name">Intelligence:</span>
+                <span class="skill-name">100</span>
+              </li>
+              <li class="skills">
+                <span class="skill-name">Intelligence:</span>
+                <span class="skill-name">100</span>
+              </li>
+              <li class="skills">
+                <span class="skill-name">Intelligence:</span>
+                <span class="skill-name">100</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <h3>Super Hero Name</h3>
-
-      <ul class="powerstats">
-        <li class="skills">
-          <span class="skill-name">Intelligence:</span>
-          <span class="skill-name">100</span>
-        </li>
-        <li class="skills">
-          <span class="skill-name">Intelligence:</span>
-          <span class="skill-name">100</span>
-        </li>
-        <li class="skills">
-          <span class="skill-name">Intelligence:</span>
-          <span class="skill-name">100</span>
-        </li>
-        <li class="skills">
-          <span class="skill-name">Intelligence:</span>
-          <span class="skill-name">100</span>
-        </li>
-      </ul>
 
       <button id="button">Draw a Card</button>
     </section>
