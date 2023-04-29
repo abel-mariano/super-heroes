@@ -47,13 +47,20 @@ button.addEventListener('click', (event) => {
       divCard.innerHTML = '';
       const divCardInner = document.createElement('div');
       divCardInner.classList.add('card__inner');
-      const divCardBody = document.createElement('div');
-      divCardBody.classList.add('card__body');
-      divCardInner.appendChild(divCardBody);
+      const divCardFront = document.createElement('div');
+      divCardFront.classList.add('card__body');
+      divCardInner.appendChild(divCardFront);
       const image = document.createElement('img');
       image.src = data.image.url;
       image.alt = 'card image';
-      divCardBody.appendChild(image);
+      divCardFront.appendChild(image);
+      const divCardBack = document.createElement('div');
+      divCardBack.classList.add('card__body', 'card__body--back');
+      divCardInner.appendChild(divCardBack);
+      const titleH2 = document.createElement('h2');
+      titleH2.classList.add('card__title');
+      titleH2.innerHTML = data.name;
+      divCardBack.appendChild(titleH2);
       divCard.append(divCardInner);
 
       console.log(data);

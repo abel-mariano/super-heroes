@@ -97,6 +97,7 @@ img {
 }
 
 .card__title {
+	font-size: 1.4em;
 	color: white;
 	font-family: 'Bruno Ace SC', cursive;
 }
