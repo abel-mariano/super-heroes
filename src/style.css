@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* font-family: 'Roboto Slab', serif; */
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +16,7 @@ body {
   background-attachment: fixed;
 }
 
+/* Title */
 header {
   display: flex;
   justify-content: center;
@@ -21,13 +27,22 @@ header {
   display: flex;
   width: 20%;
   height: auto;
+	margin-top: 15px;
   margin-bottom: 15px;
 }
 
+/* Main content */
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 /* Card */
@@ -36,15 +51,18 @@ header {
 	height: 400px;
 	perspective: 800px;
 }
+
 .card__inner {
 	position: relative;
 	height: 100%;
 	transform-style: preserve-3d;
 	transition: transform 0.5s;
 }
+
 .card:hover .card__inner {
 	transform: rotateY(180deg);
 }
+
 .card__body {
 	position: absolute;
 	inset: 0;
@@ -55,22 +73,103 @@ header {
 	box-shadow: 0 5px 10px 
 		rgba(0, 0, 0, 0.15);
 }
-.card__body--front {
+
+/* .card__body--front {
 	background-image: radial-gradient(
 		circle 248px at center,
 		#16d9e3 0%,#30c7ec 47%,
 		#46aef7 100%
 	);
-}
-.card__body--back {
-	background-image: linear-gradient(
-		-20deg, #fc6076 0%,
-		 #ff9a44 100%);
-	transform: rotateY(180deg);
-}
+} */
 
 img {
   width: 300px;
 	height: 400px;
   border-radius: 8px;
+}
+
+/* Back Side */
+.card__body--back {
+	background-image: linear-gradient(
+		-20deg, rgb(44, 60, 104) 0%,
+		 rgb(32, 37, 32) 100%);
+	transform: rotateY(180deg);
+}
+
+.card__title {
+	color: white;
+	font-family: 'Bruno Ace SC', cursive;
+}
+
+.powerstats {
+	list-style: none;
+	margin-top: -50px;
+}
+
+.skills {
+	background-color: rgba(0, 0, 0, 0.2);
+	font-family: 'Roboto Slab', serif;
+  width: 150px;
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+	justify-content: center;
+  align-items: center;
+	margin: 10px;
+}
+
+.skill-name {
+	color: white;
+}
+
+.skill-number {
+	color: #FFE713;
+	margin-left: 10px;
+}
+
+/* Button */
+#button {
+	margin: 20px;
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	padding: 3px;
+	border-radius: 6px;
+	overflow: hidden;
+}
+#button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200%;
+	height: 100%;
+	background: 
+			linear-gradient(115deg,
+			#4fcf70, #fad648, 
+			#a767e5,#12bcfe, 
+			#44ce7b);
+	background-size: 50% 100%;
+	border-radius: inherit;
+}
+#button:hover::before {
+	animation: 
+			animate_border .75s
+			linear infinite;
+}
+
+#button span {
+	font-family: 'Poppins', sans-serif;
+	position: relative;
+	z-index: 2;
+	display: block;
+	background-color: #000;
+	padding: 13px 20px;
+	border-radius: 3px;
+}
+@keyframes animate_border {
+	to {
+			transform: translateX(-50%)
+	}
 }
