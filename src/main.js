@@ -22,7 +22,10 @@ import './style.css';
 
 // Elements
 const button = document.querySelector('#button');
-const divCard = document.querySelector('.card');
+const divCardFront = document.querySelector('.card__body');
+const divCardBack = document.querySelector('.card__body--back');
+const titleH2 = document.querySelector('.card__title');
+const listPowerstats = document.querySelector('.powerstats');
 
 // Access token for the API
 const ACCESS_TOKEN = '5991109497643080';
@@ -44,8 +47,44 @@ button.addEventListener('click', (event) => {
   fetch(`${BASE_URL}/${id}`)
     .then((response) => response.json())
     .then((data) => {
-      divCard.innerHTML = '';
-      const divCardInner = document.createElement('div');
+      divCardFront.innerHTML = '';
+      listPowerstats.innerHTML = '';
+
+      divCardFront.classList.remove('hidden');
+      divCardBack.classList.remove('hidden');
+      const image = document.createElement('img');
+      image.src = data.image.url;
+      image.alt = 'card image';
+      divCardFront.appendChild(image);
+      titleH2.innerHTML = data.name;
+
+      const powerStatsArray = Object.entries(data.powerstats);
+      console.log(powerStatsArray);
+      powerStatsArray.forEach((power) => {
+        const [powerName, number] = power;
+
+        const li = document.createElement('li');
+        li.classList.add('skills');
+        const spanName = document.createElement('span');
+        spanName.classList.add('skill-name');
+        spanName.innerHTML = `${powerName} :`;
+        li.appendChild(spanName);
+        const spanNumber = document.createElement('span');
+        spanNumber.classList.add('skill-number');
+        spanNumber.innerHTML = number;
+        li.appendChild(spanNumber);
+        listPowerstats.append(li);
+      });
+      console.log(data);
+    }).catch((error) => Swal.fire({
+      title: 'Hero not found',
+      text: error.message,
+      icon: 'error',
+      confirmButtonText: 'OK',
+    }));
+});
+
+/* const divCardInner = document.createElement('div');
       divCardInner.classList.add('card__inner');
       const divCardFront = document.createElement('div');
       divCardFront.classList.add('card__body');
@@ -61,10 +100,9 @@ button.addEventListener('click', (event) => {
       titleH2.classList.add('card__title');
       titleH2.innerHTML = data.name;
       divCardBack.appendChild(titleH2);
-      divCard.append(divCardInner);
+      divCard.append(divCardInner); */
 
-      console.log(data);
-      /* image.src = data.image.url;
+/* image.src = data.image.url;
       cardTitle.innerHTML = `Name: ${data.name}`;
       powerstats.innerHTML = `
       Intelligence: ${data.powerstats.intelligence}
@@ -72,10 +110,3 @@ button.addEventListener('click', (event) => {
       Speed: ${data.powerstats.speed}
       Power: ${data.powerstats.power}
       `; */
-    }).catch((error) => Swal.fire({
-      title: 'Hero not found',
-      text: error.message,
-      icon: 'error',
-      confirmButtonText: 'Cool',
-    }));
-});
