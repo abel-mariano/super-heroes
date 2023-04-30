@@ -1,25 +1,6 @@
 import Swal from 'sweetalert2';
 import './style.css';
 
-/* <div class="card">
-  <div class="card__inner">
-    <div class="card__body card__body--front">
-      <img class="card-image" src="./src/images/516.jpg" alt="card image">
-    </div>
-
-    <div class="card__body card__body--back">
-      <h2 class="card__title">Super Hero Name</h2>
-
-      <ul class="powerstats">
-        <li class="skills">
-          <span class="skill-name">Intelligence:</span>
-          <span class="skill-number">100</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div> */
-
 // Elements
 const button = document.querySelector('#button');
 const divCardFront = document.querySelector('.card__body');
@@ -39,6 +20,39 @@ const MAX_HEROES = 1000;
 // Function that returns a random integer value
 const randomID = () => Math.floor(Math.random() * MAX_HEROES);
 
+// Function render card
+const renderCard = (data) => {
+  divCardFront.classList.remove('hidden');
+  divCardBack.classList.remove('hidden');
+  const image = document.createElement('img');
+  image.src = data.image.url;
+  image.alt = 'card image';
+  divCardFront.appendChild(image);
+  titleH2.innerHTML = data.name;
+};
+
+// Function render power status
+const renderPowerStats = (data) => {
+  const powerStatsArray = Object.entries(data.powerstats);
+
+  console.log(powerStatsArray);
+  powerStatsArray.forEach((power) => {
+    const [powerName, number] = power;
+
+    const li = document.createElement('li');
+    li.classList.add('skills');
+    const spanName = document.createElement('span');
+    spanName.classList.add('skill-name');
+    spanName.innerHTML = `${powerName} :`;
+    li.appendChild(spanName);
+    const spanNumber = document.createElement('span');
+    spanNumber.classList.add('skill-number');
+    spanNumber.innerHTML = number;
+    li.appendChild(spanNumber);
+    listPowerstats.append(li);
+  });
+};
+
 // Adding event to button
 button.addEventListener('click', (event) => {
   event.preventDefault();
@@ -50,63 +64,15 @@ button.addEventListener('click', (event) => {
       divCardFront.innerHTML = '';
       listPowerstats.innerHTML = '';
 
-      divCardFront.classList.remove('hidden');
-      divCardBack.classList.remove('hidden');
-      const image = document.createElement('img');
-      image.src = data.image.url;
-      image.alt = 'card image';
-      divCardFront.appendChild(image);
-      titleH2.innerHTML = data.name;
-
-      const powerStatsArray = Object.entries(data.powerstats);
-      console.log(powerStatsArray);
-      powerStatsArray.forEach((power) => {
-        const [powerName, number] = power;
-
-        const li = document.createElement('li');
-        li.classList.add('skills');
-        const spanName = document.createElement('span');
-        spanName.classList.add('skill-name');
-        spanName.innerHTML = `${powerName} :`;
-        li.appendChild(spanName);
-        const spanNumber = document.createElement('span');
-        spanNumber.classList.add('skill-number');
-        spanNumber.innerHTML = number;
-        li.appendChild(spanNumber);
-        listPowerstats.append(li);
-      });
+      renderCard(data);
+      renderPowerStats(data);
       console.log(data);
     }).catch((error) => Swal.fire({
       title: 'Hero not found',
       text: error.message,
       icon: 'error',
       confirmButtonText: 'OK',
+      errorfront: divCardFront.classList.add('hidden'),
+      errorback: divCardBack.classList.add('hidden'),
     }));
 });
-
-/* const divCardInner = document.createElement('div');
-      divCardInner.classList.add('card__inner');
-      const divCardFront = document.createElement('div');
-      divCardFront.classList.add('card__body');
-      divCardInner.appendChild(divCardFront);
-      const image = document.createElement('img');
-      image.src = data.image.url;
-      image.alt = 'card image';
-      divCardFront.appendChild(image);
-      const divCardBack = document.createElement('div');
-      divCardBack.classList.add('card__body', 'card__body--back');
-      divCardInner.appendChild(divCardBack);
-      const titleH2 = document.createElement('h2');
-      titleH2.classList.add('card__title');
-      titleH2.innerHTML = data.name;
-      divCardBack.appendChild(titleH2);
-      divCard.append(divCardInner); */
-
-/* image.src = data.image.url;
-      cardTitle.innerHTML = `Name: ${data.name}`;
-      powerstats.innerHTML = `
-      Intelligence: ${data.powerstats.intelligence}
-      Strength: ${data.powerstats.strength}
-      Speed: ${data.powerstats.speed}
-      Power: ${data.powerstats.power}
-      `; */
