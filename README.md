@@ -1,4 +1,4 @@
-# Welcome to the Super Hero project repository! 🐱‍🏍
+# Welcome to the Super Hero project repository! 🦸
 
 <summary><strong>🧑‍💻 What was developed in the project</strong></summary><br />
 
